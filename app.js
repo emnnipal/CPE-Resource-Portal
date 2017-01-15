@@ -122,6 +122,8 @@ MongoClient.connect(mdbUrl, function(err, database) {
             website: req.body.website,
             contact: req.body.contact,
             updatedate: moment().format('LLL'),
+            fb:req.body.fb,
+            tw:req.body.tw,
         };
         departmentCollection.updateOne({ _id: new ObjectId(departmentId)},{$set: datasave}, function(err, student) {
             if(err){
