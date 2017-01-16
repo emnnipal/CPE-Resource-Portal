@@ -124,7 +124,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             fb:req.body.fb,
             tw:req.body.tw,
         };
-        departmentCollection.findOne({ _id: new ObjectId(departmentId)},{$set: dataupdate}, function(err, data) {
+        departmentCollection.updateOne({ _id: new ObjectId(departmentId)},{$set: dataupdate}, function(err, data) {
             if(err){
 			return console.log(err)
 			}
