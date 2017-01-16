@@ -42,9 +42,6 @@ MongoClient.connect(mdbUrl, function(err, database) {
 
     app.use('/', index);
     app.use('/addnew', addnew);
-    
-   
-    
     app.get('/departments/addnew', function(req, res) {
         var departmentCollection = db.collection('departments');
         departmentCollection.find().toArray(function(err, data) {
@@ -54,7 +51,8 @@ MongoClient.connect(mdbUrl, function(err, database) {
           });
         })
     });
-    
+
+
     app.get('/departments', function(req, res) {
         var departmentCollection = db.collection('departments');
         departmentCollection.find().toArray(function(err, data) {
@@ -90,26 +88,25 @@ MongoClient.connect(mdbUrl, function(err, database) {
             res.redirect('/departments/addnew');
         })
     });
-    
 
     app.get('/departmentdata/:departmentId', function(req, res) {
         var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
-        departmentCollection.findOne({ _id: new ObjectId(departmentId)}, function(err, student) {
+        departmentCollection.findOne({ _id: new ObjectId(departmentId) }, function(err, data) {
             res.render('departmentdata', {
-                departmentdata: student
+                department: data
             });
         });	
     });
     
-    app.get('/departmentdata/:departmentId/update/', function(req, res) { 
-    	//res.render('edit', {studentId:req.params.studentId})
+    app.get('/departmentdata/:departmentId/update', function(req, res) { 
+        //res.render('edit', {studentId:req.params.studentId})
      	var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
-        departmentCollection.findOne({ _id: new ObjectId(departmentId)}, function(err, department) {
-            console.log('data loaded', department);
+        departmentCollection.findOne({ _id: new ObjectId(departmentId)}, function(err, data) {
+            console.log('data loaded', data);
             res.render('update', {
-                update: department
+                update: data
             });
         });
     });
@@ -117,8 +114,8 @@ MongoClient.connect(mdbUrl, function(err, database) {
     app.post('/departmentdata/:departmentId/update', function(req, res) {
         var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
-        var datasave={
-            dep_name: req.body.dep_name,
+        var dataupdate={
+			dep_name: req.body.dep_name,
             abbrv: req.body.abbrv,
             head: req.body.head,
             website: req.body.website,
@@ -127,22 +124,21 @@ MongoClient.connect(mdbUrl, function(err, database) {
             fb:req.body.fb,
             tw:req.body.tw,
         };
-        departmentCollection.updateOne({ _id: new ObjectId(departmentId)},{$set: datasave}, function(err, student) {
+        departmentCollection.findOne({ _id: new ObjectId(departmentId)},{$set: dataupdate}, function(err, data) {
             if(err){
-            return console.log(err)
-            }
-            console.log("Updating Data Successful!");
+			return console.log(err)
+			}
+			console.log("Updating Data Successful!");
             res.redirect('/departmentdata/'+departmentId)
-
+			
         });
     });
-
 
     app.get('/departmentdata/:departmentId/delete', function(req, res) {
         var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
         departmentCollection.deleteOne({ _id: new ObjectId(departmentId)}, function(err, student) {
-        	// res.render('student', {
+            // res.render('student', {
          //        student: student
          //    });
             if(err){
