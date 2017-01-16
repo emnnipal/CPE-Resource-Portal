@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var moment = require('moment');
+var moment = require('moment-timezone');
 var index = require('./routes/index');
 var users = require('./routes/users');
 var addnew = require('./routes/addnew');
@@ -72,7 +72,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             head: req.body.head,
             website: req.body.website,
             contact: req.body.contact,
-            createdate: moment().format('LLL'),
+            createdate: moment().tz("Asia/Manila").format('LLL');
             fb:req.body.fb,
             tw:req.body.tw,
             //socialpages:[{pagename:req.body.pagename}],
@@ -120,7 +120,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             head: req.body.head,
             website: req.body.website,
             contact: req.body.contact,
-            updatedate: moment().format('LLL'),
+            updatedate: moment().tz("Asia/Manila").format('LLL');
             fb:req.body.fb,
             tw:req.body.tw,
         };
