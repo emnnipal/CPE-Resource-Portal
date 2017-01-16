@@ -5,3 +5,9 @@
 
 }
 
+.backgroundcus{
+	background-repeat: no-repeat !important;
+    background-position: top left !important;
+    background-attachment: fixed !important;
+}
+
