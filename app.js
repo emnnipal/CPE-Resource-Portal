@@ -72,7 +72,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             head: req.body.head,
             website: req.body.website,
             contact: req.body.contact,
-            createdate: moment().tz("Asia/Manila").format('LLL');
+            createdate: moment().tz("Asia/Manila").format('LLL'),
             fb:req.body.fb,
             tw:req.body.tw,
             //socialpages:[{pagename:req.body.pagename}],
@@ -120,7 +120,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             head: req.body.head,
             website: req.body.website,
             contact: req.body.contact,
-            updatedate: moment().tz("Asia/Manila").format('LLL');
+            updatedate: moment().tz("Asia/Manila").format('LLL'),
             fb:req.body.fb,
             tw:req.body.tw,
         };
