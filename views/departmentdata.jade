@@ -31,8 +31,6 @@ block content
               | Student Page
             br
             h2.subtitle
-              | Primary subtitle
-            h2.subtitle
               | Department Name: #{departmentdata.dep_name}
             h2.subtitle
               | Abbreviation: #{departmentdata.abbrv}
@@ -42,10 +40,6 @@ block content
               | Official Website: #{departmentdata.website}
             h2.subtitle
               | Contact Number: #{departmentdata.contact}
-            h2.subtitle
-              | Creation Date: #{departmentdata.createdate}
-            h2.subtitle
-              | Update Date: #{departmentdata.updatedate}
             br
             h1.title
               | Social Pages
@@ -54,14 +48,21 @@ block content
               | Facebook: #{departmentdata.fb}
             h2.subtitle
               | Twitter: #{departmentdata.tw}
+            br
+            br
+            h2.subtitle
+              | Creation Date: #{departmentdata.createdate}
+            h2.subtitle
+              | Update Date: #{departmentdata.updatedate}
+            br
     .hero-foot
       nav.tabs.is-boxed.is-fullwidth
         .container
           ul
             li
-              a(href='/departmentdata/' + departmentdata._id+'/update') Edit
+              a(href='/departmentdata/'+departmentdata._id+'/update') Edit
             li
-              a(href='/departmentdata/' + departmentdata._id+'/delete') Delete
+              a(href='/departmentdata/'+departmentdata._id+'/delete') Delete
           
     
   script(async='', type='text/javascript', src='/javascripts/bulma.js')

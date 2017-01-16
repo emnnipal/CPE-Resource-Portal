@@ -42,7 +42,8 @@ MongoClient.connect(mdbUrl, function(err, database) {
 
     app.use('/', index);
     app.use('/addnew', addnew);
-
+    
+   
     
     app.get('/departments/addnew', function(req, res) {
         var departmentCollection = db.collection('departments');
@@ -101,13 +102,14 @@ MongoClient.connect(mdbUrl, function(err, database) {
         });	
     });
     
-    app.get('/departmentdata/:departmentId/update', function(req, res) { 
+    app.get('/departmentdata/:departmentId/update/', function(req, res) { 
     	//res.render('edit', {studentId:req.params.studentId})
      	var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
-        departmentCollection.findOne({ _id: new ObjectId(departmentId)}, function(err, student) {
+        departmentCollection.findOne({ _id: new ObjectId(departmentId)}, function(err, department) {
+            console.log('data loaded', department);
             res.render('update', {
-                update: student
+                update: department
             });
         });
     });
@@ -116,7 +118,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
         var departmentId = req.params.departmentId;
         var departmentCollection = db.collection('departments');
         var datasave={
-			dep_name: req.body.dep_name,
+            dep_name: req.body.dep_name,
             abbrv: req.body.abbrv,
             head: req.body.head,
             website: req.body.website,
@@ -127,11 +129,11 @@ MongoClient.connect(mdbUrl, function(err, database) {
         };
         departmentCollection.updateOne({ _id: new ObjectId(departmentId)},{$set: datasave}, function(err, student) {
             if(err){
-			return console.log(err)
-			}
-			console.log("Updating Data Successful!");
-	        res.redirect('/departmentdata/'+departmentId)
-			
+            return console.log(err)
+            }
+            console.log("Updating Data Successful!");
+            res.redirect('/departmentdata/'+departmentId)
+
         });
     });
 
@@ -144,11 +146,11 @@ MongoClient.connect(mdbUrl, function(err, database) {
          //        student: student
          //    });
             if(err){
-			return console.log(err)
-			}
-			console.log("Deleting Data Successful!");
-	        res.redirect('/departments/')
-			
+            return console.log(err)
+            }
+            console.log("Deleting Data Successful!");
+            res.redirect('/departments/')
+
         });
     });
 
