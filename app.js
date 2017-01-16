@@ -94,7 +94,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
         var departmentCollection = db.collection('departments');
         departmentCollection.findOne({ _id: new ObjectId(departmentId) }, function(err, data) {
             res.render('departmentdata', {
-                department: data
+                departmentdata: data
             });
         });	
     });
