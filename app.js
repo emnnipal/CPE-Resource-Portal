@@ -85,7 +85,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
                 return;
             }
             console.log("Saving Data Successful!");
-            res.redirect('/departments/addnew');
+            res.redirect('/departments');
         })
     });
 
