@@ -75,6 +75,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             createdate: moment().tz("Asia/Manila").format('LLL'),
             fb:req.body.fb,
             tw:req.body.tw,
+            picture:req.body.picture,
             //socialpages:[{pagename:req.body.pagename}],
 
         };
@@ -123,6 +124,7 @@ MongoClient.connect(mdbUrl, function(err, database) {
             updatedate: moment().tz("Asia/Manila").format('LLL'),
             fb:req.body.fb,
             tw:req.body.tw,
+            picture:req.body.picture,
         };
         departmentCollection.updateOne({ _id: new ObjectId(departmentId)},{$set: dataupdate}, function(err, data) {
             if(err){
