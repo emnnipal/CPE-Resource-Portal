@@ -18,8 +18,11 @@ block content
                 | Home
               a.nav-item(href='/departments')
                 | Departments
-              a.nav-item.is-active(href='/departments/addnew')
+              a.nav-item(href='/departments/addnew')
                 | Add Data
+              a.nav-item(href='/auth/logout')
+                | Log Out
+                
     .hero-body
       .container
         .columns.is-vcentered
@@ -27,33 +30,56 @@ block content
             h1.title
               | Edit Data
             .box
-              form(method="POST", action="/departmentdata/#{update._id}/update")
-                label.label Department Name
+              if (error)
+                //-for err in error
+                .notification.is-danger
+
+                  //--var er = error.message
+                  //-- var a = er.slice(1,10)
+                  //- h1= a
+                  | #{error}
+              form(method="POST", action="/departments/#{update._id}/update")
+                label.label.is-danger 
+                  | Department Name 
+                  strong.iscolor *
+                //- if (error == 'ValidationError: Please fill the Department Name')
+                //-   p.control.has-icon.has-icon-right
+                //-     input.input.is-danger(type="text", placeholder="Department Name", name="dep_name", value="#{update.dep_name}")
+                //-     span.icon.is-small
+                //- else
                 p.control
-                  input.input(type="text", placeholder="Department Name", name="dep_name", value="#{update.dep_name}")
-                label.label Abbreviation
+                  input.input(type="text", placeholder="", name="dep_name", value="#{update.dep_name}")
+                label.label 
+                  | Abbreviation 
+                  strong.iscolor *
                 p.control
-                  input.input(type="text", placeholder="Abbreviation", name="abbrv", value="#{update.abbrv}")
-                label.label Secretary/Head
+                  input.input(type="text", placeholder="", name="abbrv", value="#{update.abbrv}")
+                label.label 
+                  | Secretary/Head 
+                  strong.iscolor *
+
                 p.control
-                  input.input(type="text", placeholder="Secretary/Head", name="head", value="#{update.head}")
+                  input.input(type="text", placeholder="", name="head", value="#{update.head}")
                 label.label Official Website
                 p.control
-                  input.input(type="url", placeholder="Official Website", name="website", value="#{update.website}")
+                  input.input(type="url", placeholder="http://www.example.com", name="website", value="#{update.website}")
                 label.label Contact Number
                 p.control
                   input.input(type="value", placeholder="Contact Number", name="contact", value="#{update.contact}")
                 label.label Facebook
                 p.control
-                  input.input(type="text", placeholder="Facebook", name="fb", value="#{update.fb}")
+                  input.input(type="text", placeholder="http://www.facebook.com/example", name="fb", value="#{update.fb}")
                 label.label Twitter
                 p.control
-                  input.input(type="text", placeholder="Twitter", name="tw", value="#{update.tw}")
+                  input.input(type="text", placeholder="http://www.twitter.com/example", name="tw", value="#{update.tw}")
                 label.label Image
                 p.control
                   input.input(type="text", placeholder="Image (URL)", name="picture", value="#{update.picture}")
                 p.control
-                  button.is-dark(type="submit") Submit
+                  button.button.is-dark(type="submit" ) Submit
+                  span 
+                  a.btn.btn-link(href="/departments/#{update._id}")
+                        button.button.is-dark(type="button") Cancel
               
   
   include footer

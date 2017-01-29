@@ -20,6 +20,8 @@ block content
                   | Departments
                 a.nav-item(href='/departments/addnew')
                   | Add Data
+                a.nav-item.is-active(href='/auth/logout')
+                  | Log Out
     .hero-body
       .container
         .columns.is-vcentered
@@ -37,7 +39,9 @@ block content
             h2.subtitle
               | Secretary/Head: #{departmentdata.head}
             h2.subtitle
-              | Official Website: #{departmentdata.website}
+              | Official Website: 
+              a(href="#{departmentdata.website}" target="_blank")
+                strong #{departmentdata.website}
             h2.subtitle
               | Contact Number: #{departmentdata.contact}
             br
@@ -45,9 +49,14 @@ block content
               | Social Pages
             br
             h2.subtitle
-              | Facebook: #{departmentdata.fb}
+              | Facebook: 
+              a(href="#{departmentdata.fb}" target="_blank")
+                strong #{departmentdata.fb}
+
             h2.subtitle
-              | Twitter: #{departmentdata.tw}
+              | Twitter: 
+              a(href="#{departmentdata.tw}" target="_blank")
+                strong #{departmentdata.tw}
             br
             br
             h2.subtitle
@@ -60,9 +69,9 @@ block content
         .container
           ul
             li
-              a(href='/departmentdata/'+departmentdata._id+'/update') Edit
+              a(href='/departments/'+departmentdata._id+'/update') Edit
             li
-              a(href='/departmentdata/'+departmentdata._id+'/delete') Delete
+              a(href='/departments/'+departmentdata._id+'/delete') Delete
           
   
   include footer

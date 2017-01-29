@@ -17,4 +17,15 @@ block content
                 | Departments
               a.button.is-large.is-white.is-outlined(href='/departments/addnew')
                 | Add New
+              br
+              br
+              if (user)
+                p You are logged in as #{user.username}
+                a(href="/auth/logout") logout
+              else
+                a(href='/auth/login')
+                  | Login
+                strong    |   
+                a(href='/auth/register')
+                  | Register
     include footer

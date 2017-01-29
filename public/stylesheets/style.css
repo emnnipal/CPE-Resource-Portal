@@ -5,6 +5,9 @@
 
 }
 
+.iscolor{
+	color: red !important;
+}
 .backgroundcus{
 	background-repeat: no-repeat !important;
     background-position: top left !important;
