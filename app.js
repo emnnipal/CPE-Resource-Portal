@@ -4,12 +4,17 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var hbs = require('express-handlebars');
-var expressValidator = require('express-validator');
+
 var session = require('express-session');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+
+var index = require('./routes/index');
+var departments = require('./routes/departments');
+var auth = require('./routes/auth');
+//var hbs = require('express-handlebars');
+//var expressValidator = require('express-validator');
 
 // passport.use(new LocalStrategy(
 //   function(username, password, done) {
@@ -27,9 +32,7 @@ var LocalStrategy = require('passport-local').Strategy;
 //   }
 // ));
 
-var index = require('./routes/index');
-var departments = require('./routes/departments');
-var auth = require('./routes/auth');
+
 
 // var MongoURI = 'mongodb://mod2:rudeemman@ds161048.mlab.com:61048/student'
 var MongoURI = 'mongodb://RE:rudeemman@ds133249.mlab.com:33249/modules'

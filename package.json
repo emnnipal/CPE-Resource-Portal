@@ -18,6 +18,7 @@
     "moment-timezone": "^0.5.11",
     "mongoose": "^4.7.7",
     "mongoose-validator":"*",
+    "mongoose-type-email":"*",
     "morgan": "~1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
