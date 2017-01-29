@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var User = new Schema({
 	username: {
 		type: String,
-        //required: [true,'Username is required.'],
+        required: [true,'Username is required.'],
 		validate: {
         validator: function(a) {
             return /^[a-zA-z]{8,}$/.test(a);
