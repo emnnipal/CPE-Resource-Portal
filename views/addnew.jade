@@ -46,6 +46,10 @@ block content
                   //-h1= a
               form(method="POST", action="/departments/")
                 label.label 
+                  | Field with 
+                  strong.iscolor *
+                  |  is required.
+                label.label 
                   | Department Name
                   strong.iscolor *
                   input.input(type="text", placeholder="", name="dep_name" )

@@ -20,7 +20,7 @@ block content
                   | Departments
                 a.nav-item(href='/departments/addnew')
                   | Add Data
-                a.nav-item.is-active(href='/auth/logout')
+                a.nav-item(href='/auth/logout')
                   | Log Out
     .hero-body
       .container
@@ -63,16 +63,15 @@ block content
               | Creation Date: #{departmentdata.createdate}
             h2.subtitle
               | Update Date: #{departmentdata.updatedate}
-            br
-    .hero-foot
-      nav.tabs.is-boxed.is-fullwidth
+    .tabs.is-fullwidth
         .container
           ul
             li
-              a(href='/departments/'+departmentdata._id+'/update') Edit
+              a.btn.btn-link(href='/departments/'+departmentdata._id+'/update')
+                button.button.is-medium(type="button") Edit
             li
-              a(href='/departments/'+departmentdata._id+'/delete') Delete
-          
+              a(href='/departments/'+departmentdata._id+'/delete')
+                button.button.is-medium(type="button") Delete
   
   include footer
 
