@@ -7,11 +7,12 @@ var User = new Schema({
 	username: {
 		type: String,
         required: [true,'Username is required.'],
+        minlength: [8, 'Username must be atleast 8 characters.'],
 		validate: {
         validator: function(a) {
-            return /^[a-zA-z]{8,}$/.test(a);
+            return /^[a-zA-z]{1,}$/.test(a);
           },
-        message: 'Invalid Username.'
+        message: 'Username must be alpha characters only.'
         }, 
 	},
     first_name: String,
@@ -23,7 +24,7 @@ var User = new Schema({
           validator: function(v) {
             return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(v);
           },
-          message: 'Invalid Email.'
+          message: 'Invalid format of email.'
         },
     }
 }, { collection: 'users' });
