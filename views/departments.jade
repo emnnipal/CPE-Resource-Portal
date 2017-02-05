@@ -25,15 +25,18 @@ block content
     .hero-body
       .container 
         nav.panel
-          p.panel-heading
-            | Departments
+          p#count.panel-heading
+            | Departments:                        
+            
           .box
             ul
-              for data in departments
-                li
-                  a.panel-block.is-active(href='/departments/' + data._id ) #{data.dep_name}
-                    span.panel-icon
-                      i.fa.fa-book
-        
+              //- thead
+                //-   for data in departments
+                //-     li
+                //-       a.panel-block.is-active(href='/departments/' + data._id ) #{data.dep_name}
+                //-         span.panel-icon
+                //-           i.fa.fa-book
+              li#table-body
+      
   include footer
 

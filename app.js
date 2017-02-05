@@ -10,6 +10,11 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
+const methodOverride = require('method-override');
+const restify = require('express-restify-mongoose');
+const router = express.Router();
+
+
 var index = require('./routes/index');
 var departments = require('./routes/departments');
 var auth = require('./routes/auth');
@@ -37,13 +42,7 @@ var auth = require('./routes/auth');
 // var MongoURI = 'mongodb://mod2:rudeemman@ds161048.mlab.com:61048/student'
 var MongoURI = 'mongodb://RE:rudeemman@ds133249.mlab.com:33249/modules'
 
-mongoose.connect(MongoURI, function(err, res) {
-    if (err) {
-        console.log('Error connecting to ' + MongoURI);
-    } else {
-        console.log('MongoDB connected!');
-    }
-});
+
 
 var app = express();
 
@@ -57,6 +56,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
     secret: 'secret',
@@ -89,14 +89,26 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 var User = require('./models/user');
+var Department = require('./models/departments');
+
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-
-
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+mongoose.connect(MongoURI, function(err, res) {
+    if (err) {
+        console.log('Error connecting to ' + MongoURI);
+    } else {
+        console.log('MongoDB connected!');
+    }
+});
+
+restify.serve(router, Department);
+app.use(router);
 
 app.use('/', index);
 app.use('/departments', departments);
