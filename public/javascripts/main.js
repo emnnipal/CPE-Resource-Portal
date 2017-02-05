@@ -16,11 +16,46 @@ $('#delete').on('click', function(e){
   });
 });
 
+$('#delete').on('click', function(e){
+  e.preventDefault();
+
+  $('input:checked').each(function(index, value){
+    var val = $(this).attr('id');
+    console.log($(this));
+    var $thisInput = $(this);
+
+    $.ajax({
+      url:'/departments/'+val,
+      type:'DELETE'
+    }).done(function(){
+      $thisInput.parents('tr').remove();
+    });
+
+  });
+});
+
+$('#sort').on('click', function(e){
+  e.preventDefault();
+
+  $('input:checked').each(function(index, value){
+    var val = $(this).attr('id');
+    console.log($(this));
+    var $thisInput = $(this);
+
+    $.ajax({
+      url:'/departments/'+val,
+      type:'GET'
+    }).done(function(){
+      $thisInput.parents('tr').remove();
+    });
+
+  });
+});
 
   
 if (window.location.pathname === '/departments') {
 
-  fetch('api/v1/department').then(function(res) {
+  fetch('api/v1/department?sort=createdate').then(function(res) {
     res.json().then(function(departments) {
       console.log('departments', departments);
       var tbody = document.getElementById('table-body');
@@ -39,5 +74,16 @@ if (window.location.pathname === '/departments') {
     
     })
   });
+  const request = require('request')
 
+  request.get({
+    url: '/api/v1/department',
+    qs: {
+      query: JSON.stringify({[{
+          dep_name: '~Department of Health'
+        }],
+      })
+    }
+  })
 }
+

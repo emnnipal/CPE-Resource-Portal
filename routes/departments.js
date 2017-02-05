@@ -62,7 +62,7 @@ router.route('/:departmentId')
   })
 
   .get(function(req, res) {
-    res.render('departmentdata', {departmentdata: department});
+    res.render('departmentdata', {departmentdata: department, moment:moment});
   })
 
   // .post(function(req, res) {

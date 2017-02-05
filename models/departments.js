@@ -30,7 +30,7 @@ var departmentSchema = new Schema({
       },
   website: String,
   contact: String,
-  createdate: String,
+  createdate: Date,
   updatedate: String,
   fb:String,
   tw:String,

@@ -60,7 +60,7 @@ block content
             br
             br
             h2.subtitle
-              | Creation Date: #{departmentdata.createdate}
+              | Creation Date: #{moment(departmentdata.createdate).format("LLL")}
             h2.subtitle
               | Update Date: #{departmentdata.updatedate}
     .tabs.is-fullwidth
