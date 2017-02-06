@@ -15,8 +15,11 @@ router.get('/', function(req, res) {
     res.render('departments', {departments: data});
   })
 });
+router.post('/', function(req, res){
+  res.redirect('/departments')
+});
 
-router.post('/', function(req, res) {
+router.post('/addnew', function(req, res) {
     new Department({
       dep_name: req.body.dep_name,
 	    abbrv: req.body.abbrv,

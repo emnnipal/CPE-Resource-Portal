@@ -23,11 +23,19 @@ block content
                 a.nav-item(href='/auth/logout')
                   | Log Out
     .hero-body
+      .container.has-text-centered
+          .columns.is-vcentered
+            .column.is-half.is-offset-6
+              form(method= 'post', action= '/departments', onsubmit= 'getSearch()')
+                p.control.has-addons.has-text-centered
+                  input#search.input.is-expanded.is-medium(type='search', placeholder='Search Departments')
+                  button.button.is-medium.is-outlined(type="submit")
+                    | Search
+      br
       .container 
         nav.panel
           p#count.panel-heading
             | Departments:                        
-            
           .box
             ul
               //- thead
