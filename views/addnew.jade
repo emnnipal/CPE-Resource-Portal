@@ -1,84 +1,170 @@
+//- extends layout
+
+//- block content
+//-   section.hero.is-fullheight.is-dark.is-bold
+//-     .hero-head
+//-       .container
+//-         nav.nav
+//-           .container
+//-             .nav-left
+//-               a.nav-item(href='/')
+//-                 img(src='/images/bulma-white.png', alt='Description')
+//-             span.nav-toggle
+//-               span
+//-               span
+//-               span
+//-             .nav-right.nav-menu
+//-               a.nav-item(href='/')
+//-                 | Home
+//-               a.nav-item(href='/subjects')
+//-                 | Departments
+//-               a.nav-item.is-active(href='/subjects/addnew')
+//-                 | Add Data
+//-               a.nav-item(href='/auth/logout')
+//-                 | Log Out
+//-     .hero-body
+//-       .container
+//-         .columns.is-vcentered
+//-           .column.is-4.is-offset-4
+//-             h1.title
+//-               | Add Data
+//-             .box
+//-               if (error)
+//-                 //--var eArr = []
+//-                 //--var e
+//-                 //--var a
+//-                 //-for e in Object.keys(error.errors)
+//-                 //-  eArr.push(e)
+//-                 //-for a in eArr
+//-                 .notification.is-danger
+//-                   //- | #{error.errors.head}
+//-                   //- | #{error.errors.abbrv}
+//-                   //- | #{error.errors.dep_name}
+//-                   | #{error}
+//-                   //--var er = "#{error}"
+//-                   //--var a = er.slice(1)
+//-                   //-h1= a
+//-               form(method="POST", action="/subjects/addnew")
+//-                 label.label 
+//-                   | Field with 
+//-                   strong.iscolor *
+//-                   |  is required.
+//-                 label.label 
+//-                   | Department Name
+//-                   strong.iscolor *
+//-                   input.input(type="text", placeholder="", name="dep_name" )
+//-                 label.label 
+//-                   | Abbreviation 
+//-                   strong.iscolor *
+//-                   input.input(type="text", placeholder="", name="abbrv" )
+//-                 label.label 
+//-                   | Secretary/Head
+//-                   strong.iscolor *
+//-                   input.input(type="text", placeholder="", name="head" )
+//-                 label.label Official Website
+//-                 p.control
+//-                   input.input(type="url", placeholder="http://www.example.com", name="website" )
+//-                 label.label Contact Number
+//-                 p.control
+//-                   input.input(type="value", placeholder="Contact Number", name="contact" )
+//-                 label.label Facebook
+//-                 p.control
+//-                   input.input(type="text", placeholder="http://www.facebook.com/example", name="fb" )
+//-                 label.label Twitter
+//-                 p.control
+//-                   input.input(type="text", placeholder="http://www.twitter.com/example", name="tw" )
+//-                 label.label Image
+//-                 p.control
+//-                   input.input(type="text", placeholder="Image (URL)", name="picture")
+//-                 p.control
+//-                   button.button.is-dark(type="submit") Submit
+//-                   span  
+//-                   a.btn.btn-link(href="/subjects")
+//-                         button.button.is-dark(type="button") Cancel
+//-   include footer
+
+
 extends layout
 
 block content
-  section.hero.is-fullheight.is-dark.is-bold
-    .hero-head
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
       .container
-        nav.nav
-          .container
-            .nav-left
-              a.nav-item(href='/')
-                img(src='/images/bulma-white.png', alt='Description')
-            span.nav-toggle
-              span
-              span
-              span
-            .nav-right.nav-menu
-              a.nav-item(href='/')
-                | Home
-              a.nav-item(href='/departments')
-                | Departments
-              a.nav-item.is-active(href='/departments/addnew')
-                | Add Data
-              a.nav-item(href='/auth/logout')
-                | Log Out
-    .hero-body
-      .container
-        .columns.is-vcentered
-          .column.is-4.is-offset-4
-            h1.title
-              | Add Data
-            .box
-              if (error)
-                //--var eArr = []
-                //--var e
-                //--var a
-                //-for e in Object.keys(error.errors)
-                //-  eArr.push(e)
-                //-for a in eArr
-                .notification.is-danger
-                  //- | #{error.errors.head}
-                  //- | #{error.errors.abbrv}
-                  //- | #{error.errors.dep_name}
-                  | #{error}
-                  //--var er = "#{error}"
-                  //--var a = er.slice(1)
-                  //-h1= a
-              form(method="POST", action="/departments/addnew")
-                label.label 
-                  | Field with 
-                  strong.iscolor *
-                  |  is required.
-                label.label 
-                  | Department Name
-                  strong.iscolor *
-                  input.input(type="text", placeholder="", name="dep_name" )
-                label.label 
-                  | Abbreviation 
-                  strong.iscolor *
-                  input.input(type="text", placeholder="", name="abbrv" )
-                label.label 
-                  | Secretary/Head
-                  strong.iscolor *
-                  input.input(type="text", placeholder="", name="head" )
-                label.label Official Website
-                p.control
-                  input.input(type="url", placeholder="http://www.example.com", name="website" )
-                label.label Contact Number
-                p.control
-                  input.input(type="value", placeholder="Contact Number", name="contact" )
-                label.label Facebook
-                p.control
-                  input.input(type="text", placeholder="http://www.facebook.com/example", name="fb" )
-                label.label Twitter
-                p.control
-                  input.input(type="text", placeholder="http://www.twitter.com/example", name="tw" )
-                label.label Image
-                p.control
-                  input.input(type="text", placeholder="Image (URL)", name="picture")
-                p.control
-                  button.button.is-dark(type="submit") Submit
-                  span  
-                  a.btn.btn-link(href="/departments")
-                        button.button.is-dark(type="button") Cancel
-  include footer
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item
+              a.nav-link(href='/subjects') Subjects    
+            li.nav-item.active
+              a.nav-link(href='/subjects/addnew') Add
+                span.sr-only (current)
+          li.nav-item.form-inline
+              a.nav-link(href='/auth/logout') Log out
+    .view
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          li
+            br
+            br
+            br
+            .container.row.justify-content-center
+              .col-6
+                .card-block
+                  form(method="POST", action="/subjects/addnew")
+                    // Header
+                    .text-center
+                      h3
+                        i.fa
+                        |  Add a subject
+                      hr.mt-2.mb-2
+                    // Body
+                    if (error)
+                          .card.card-danger.text-center.z-depth-2.mb-1
+                            .card-block
+                              p.white-text.mb-0
+                                | #{error}
+                    else
+                      p 
+                      | Field with 
+                      strong.iscolor *
+                      |  is required.
+                    br
+                    // Body
+                    .md-form
+                      i.fa.prefix
+                      input#form3.form-control(type='text', name="name")
+                      label(for='form3') Subject Name*
+                    .md-form
+                      i.fa.prefix
+                      input#form2.form-control(type='text', name="code")
+                      label(for='form2') Subject Code*
+                    .md-form
+                      i.fa.prefix
+                      input#form32.form-control(type='text', name="year")
+                      label(for='form32') Subject Year*
+                    .md-form
+                      i.fa.prefix
+                      label Subject Sem*
+                    .md-form
+                      input(type='radio', name="sem" value="1st Semester") 
+                      |  1st Semester
+                      br
+                      input(type='radio', name="sem" value="2nd Semester") 
+                      |  2nd Semester
+                                         
+                    .text-center
+                      button.btn.btn-default Submit
+                      .call
+                        br
+                        p
+                          | 
+                          br
+                          span
+                            i.fa.
+                          |  
+    include footer

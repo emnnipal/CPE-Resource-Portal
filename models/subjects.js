@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var departmentSchema = new Schema({
+var subjectSchema = new Schema({
   // id is created automatically
   // name: String,
   // job: String,
@@ -14,27 +14,24 @@ var departmentSchema = new Schema({
   //   },
   //   note: String
   // }]
-
-
-  dep_name: {
+  name: {
       type: String,
-      required: [true, 'Please fill the Department Name']
+      required: [true, 'Please fill the Subject Name']
       },
-  abbrv: {
+  code: {
       type: String,
-      required: [true, 'Please fill the Abbreviation']
+      required: [true, 'Please fill the Subject Code']
       },
-  head: {
+  year: {
       type: String,
-      required: [true, 'Please fill the Secretary/head']
+      required: [true, 'Please fill the Subject Year']
       },
-  website: String,
-  contact: String,
+  sem: {
+      type: String,
+      required: [true, 'Please fill the Subject Year']
+      },
   createdate: Date,
   updatedate: String,
-  fb:String,
-  tw:String,
-  picture:String,
-}, { collection: 'module4' });
+}, { collection: 'subjects' });
 
-module.exports = mongoose.model('Department', departmentSchema);
+module.exports = mongoose.model('Subject', subjectSchema);

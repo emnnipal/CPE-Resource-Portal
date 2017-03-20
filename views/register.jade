@@ -1,74 +1,150 @@
+//- extends layout
+
+//- block content
+//-   section.hero.is-fullheight.is-dark.is-bold
+//-     .hero-head
+//-       .container
+//-         nav.nav
+//-           .container
+//-             .nav-left
+//-               a.nav-item(href='/')
+//-                 img(src='/images/bulma-white.png', alt='Description')
+//-             span.nav-toggle
+//-               span
+//-               span
+//-               span
+//-             .nav-right.nav-menu
+//-               a.nav-item(href='/')
+//-                 | Home
+//-               a.nav-item(href='/auth/login')
+//-                 | Login
+//-               a.nav-item.is-active(href='/auth/register')
+//-                 | Register
+//-     .hero-body
+//-       .container
+//-         .columns.is-vcentered
+//-           .column.is-4.is-offset-4
+//-             h1.title
+//-               | Register
+//-             .box
+//-               if (error)
+//-                 //--var eArr = []
+//-                 //--var e
+//-                 //--var a
+//-                 //-for e in Object.keys(error.errors)
+//-                 //-  eArr.push(e)
+//-                 //-for a in eArr
+//-                 //- for err in error
+//-                 .notification.is-danger
+//-                   | #{error}
+//-               //--var er = "#{error}"
+//-               //--var a = er.slice(1)
+//-               //-h1= a
+//-               form(role="form", method="POST", action="/auth/register")
+//-                 label.label 
+//-                   | Field with 
+//-                   strong.iscolor *
+//-                   |  is required.
+//-                 label.label 
+//-                   | Username
+//-                   strong.iscolor *
+//-                   |  (atleast 8 alpha characters only)
+//-                   input.input(type="text", placeholder="", name="username")
+//-                 label.label 
+//-                   | Password
+//-                   strong.iscolor *
+//-                   input.input(type="password", placeholder="", name="password")
+//-                 label.label First Name
+//-                   input.input(type="text", placeholder="", name="first_name")
+//-                 label.label Last Name
+//-                   input.input(type="text", placeholder="", name="last_name")
+//-                 label.label 
+//-                   | Email
+//-                   strong.iscolor *
+//-                   input.input(type="text", placeholder="example@example.com", name="email")
+//-                 p.control
+//-                   .block
+//-                       button.button.is-dark(type="submit" , value="Register") Register
+//-                       span        
+//-                       a.btn.btn-link(href="/")
+//-                         button.button.is-dark(type="button") Cancel
+                  
+//-   include footer
+
+                
+
 extends layout
 
 block content
-  section.hero.is-fullheight.is-dark.is-bold
-    .hero-head
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
       .container
-        nav.nav
-          .container
-            .nav-left
-              a.nav-item(href='/')
-                img(src='/images/bulma-white.png', alt='Description')
-            span.nav-toggle
-              span
-              span
-              span
-            .nav-right.nav-menu
-              a.nav-item(href='/')
-                | Home
-              a.nav-item(href='/auth/login')
-                | Login
-              a.nav-item.is-active(href='/auth/register')
-                | Register
-    .hero-body
-      .container
-        .columns.is-vcentered
-          .column.is-4.is-offset-4
-            h1.title
-              | Register
-            .box
-              if (error)
-                //--var eArr = []
-                //--var e
-                //--var a
-                //-for e in Object.keys(error.errors)
-                //-  eArr.push(e)
-                //-for a in eArr
-                //- for err in error
-                .notification.is-danger
-                  | #{error}
-              //--var er = "#{error}"
-              //--var a = er.slice(1)
-              //-h1= a
-              form(role="form", method="POST", action="/auth/register")
-                label.label 
-                  | Field with 
-                  strong.iscolor *
-                  |  is required.
-                label.label 
-                  | Username
-                  strong.iscolor *
-                  |  (atleast 8 alpha characters only)
-                  input.input(type="text", placeholder="", name="username")
-                label.label 
-                  | Password
-                  strong.iscolor *
-                  input.input(type="password", placeholder="", name="password")
-                label.label First Name
-                  input.input(type="text", placeholder="", name="first_name")
-                label.label Last Name
-                  input.input(type="text", placeholder="", name="last_name")
-                label.label 
-                  | Email
-                  strong.iscolor *
-                  input.input(type="text", placeholder="example@example.com", name="email")
-                p.control
-                  .block
-                      button.button.is-dark(type="submit" , value="Register") Register
-                      span        
-                      a.btn.btn-link(href="/")
-                        button.button.is-dark(type="button") Cancel
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item
+              a.nav-link(href='/auth/login') Login
+            li.nav-item.active
+              a.nav-link(href='/auth/register') Register
+                span.sr-only (current)
+    .view
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          br
+          br
+          br
+          br
+          li
+            .container.row.justify-content-center
+              .col-6
+                .card
+                  .card-block
+                    // Header
+                    form(role="form", method="POST", action="/auth/register")
+                      .form-header.blue-gradient
+                        h3
+                          i.fa
+                          |  Register:
+                      // Body
+                      if (error)
+                          .card.card-danger.text-center.z-depth-2.mb-1
+                            .card-block
+                              p.white-text.mb-0
+                                | #{error}
+                      else
+                        p 
+                        | Field with 
+                        strong.iscolor *
+                        |  is required.
+                      br
+                      .md-form
+                        i.fa.prefix
+                        input#form3.form-control(type='text', name="username")
+                        label(for='form3') Your username*
+                      .md-form
+                        i.fa.prefix
+                        input#form4.form-control(type='password', name="password")
+                        label(for='form4') Your password*
+                      .md-form
+                        i.fa.prefix
+                        input#form3.form-control(type='text', name="first_name")
+                        label(for='form3') Your first name
+                      .md-form
+                        i.fa.prefix
+                        input#form3.form-control(type='text', name="last_name")
+                        label(for='form3') Your last name
+                      .md-form
+                        i.fa.prefix
+                        input#form2.form-control(type='text', name="email")
+                        label(for='form2') Your email*
+                      .text-center
+                        button.btn.btn-indigo Sign up  
                   
-  include footer
 
-                
+
+    include footer

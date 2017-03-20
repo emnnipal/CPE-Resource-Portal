@@ -1,31 +1,45 @@
 extends landing
 
 block content
-  section.hero.is-fullheight.is-dark.backgroundcus
-    .hero-body
-      .container.has-text-centered
-        .columns.is-vcentered
-          .column.is-5
-            figure.image.is-4by3
-              img.promo-img(src='https://i.ytimg.com/vi/wlcleOp5_pU/maxresdefault.jpg', alt='Description')
-          .column.is-6.is-offset-1
-            h1.title.is-2
-              | Government Departments
-            br
-            p.has-addons.has-text-centered
-              a.button.is-large.is-white.is-outlined(href='/departments')
-                | Departments
-              a.button.is-large.is-white.is-outlined(href='/departments/addnew')
-                | Add New
-              br
-              br
-              if (user)
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
+      .container
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item.active
+              a.nav-link(href='/')
+                | Home 
+                span.sr-only (current)
+            if (user)
+              li.nav-item
+                a.nav-link(href='/subjects') Subjects
+              li.nav-item
+                a.nav-link(href='/subjects/addnew') Add
+              li.nav-item
+                a.nav-link(href='/auth/logout') Log out
+            else
+              li.nav-item
+                a.nav-link(href='/auth/login') Login
+              li.nav-item
+                a.nav-link(href='/auth/register') Register
+    .view.hm-black-strong
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          li
+            h1.h1-responsive CPE Resource Portal
+          li
+            if (user)
                 p You are logged in as #{user.username}
                 a(href="/auth/logout") Logout
-              else
-                a(href='/auth/login')
-                  | Login
-                strong    |   
-                a(href='/auth/register')
-                  | Register
+                br
+                br
+                a.btn.btn-primary.btn-lg(href='/subjects') Subjects
+                a.btn.btn-default.btn-lg(href='/subjects/addnew') Add
+            else
+                a.btn.btn-primary.btn-lg(href='/auth/login') Login
+                a.btn.btn-default.btn-lg(href='/auth/register') Register
+
     include footer

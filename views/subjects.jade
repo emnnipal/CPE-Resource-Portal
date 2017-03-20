@@ -1,0 +1,134 @@
+//- extends layout
+
+//- block content
+//-   section.hero.is-medium.is-bold.is-dark
+//-     .hero-head
+//-         .container
+//-           nav.nav
+//-             .container
+//-               .nav-left
+//-                 a.nav-item(href='/')
+//-                   img(src='/images/bulma-white.png', alt='Description')
+//-               span.nav-toggle
+//-                 span
+//-                 span
+//-                 span
+//-               .nav-right.nav-menu
+//-                 a.nav-item(href='/')
+//-                   | Home
+//-                 a.nav-item.is-active(href='/subjects')
+//-                   | Departments
+//-                 a.nav-item(href='/subjects/addnew')
+//-                   | Add Data
+//-                 a.nav-item(href='/auth/logout')
+//-                   | Log Out
+//-     .hero-body
+//-       .container.has-text-centered
+//-           .columns.is-vcentered
+//-             .column.is-half.is-offset-6
+//-               form(method= 'post', action= '/subjects', onsubmit= 'getSearch()')
+//-                 p.control.has-addons.has-text-centered
+//-                   input#search.input.is-expanded.is-medium(type='search', placeholder='Search Subjects')
+//-                   button.button.is-medium.is-outlined(type="submit")
+//-                     | Search
+//-       br
+//-       .container 
+//-         nav.panel
+//-           p#count.panel-heading
+//-             | Subjects:                        
+//-           .box
+//-             ul
+//-               //- thead
+//-                 //-   for data in departments
+//-                 //-     li
+//-                 //-       a.panel-block.is-active(href='/departments/' + data._id ) #{data.dep_name}
+//-                 //-         span.panel-icon
+//-                 //-           i.fa.fa-book
+//-               li#table-body
+      
+//-   include footer
+
+
+extends layout
+
+block content
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
+      .container
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item.active
+              a.nav-link(href='/subjects') Subjects
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/subjects/addnew') Add
+          li.nav-item.form-inline
+              a.nav-link(href='/auth/logout') Log out
+    .view
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          .container.row.justify-content-center
+            .col-10
+              form.waves-effect.waves-light(method= 'post', action= '/subjects', onsubmit= 'getSearch()')
+                input#search.form-control(type='search', placeholder='Search')
+                //- .text-center
+                //-         button.btn.btn-indigo Search  
+              .list-group
+                a.list-group-item.active(href='#')
+                  p#count
+                li#table-body
+                //- a.list-group-item.list-group-item-action(href='#') Dapibus ac facilisis in
+                //- a.list-group-item.list-group-item-action(href='#') Morbi leo risus
+                //- a.list-group-item.list-group-item-action(href='#') Porta ac consectetur ac
+                //- a.list-group-item.list-group-item-action.disabled(href='#') Vestibulum at eros
+    include footer
+
+
+//- extends customlayout
+
+//- block content
+//-  header
+//-       nav.navbar.navbar-toggleable-md.navbar-dark
+//-         .container
+//-           button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+//-             span.navbar-toggler-icon
+//-           a.navbar-brand(href='#')
+//-           strong Navbar
+//-         #navbarNav1.collapse.navbar-collapse
+//-           ul.navbar-nav.mr-auto
+//-             li.nav-item
+//-               a.nav-link(href='/')
+//-                 | Home 
+//-             li.nav-item.active
+//-               a.nav-link(href='/subjects') Subjects
+//-                 span.sr-only (current)
+//-             li.nav-item
+//-               a.nav-link(href='/subjects/addnew') Add
+//-           li.nav-item.form-inline
+//-               a.nav-link(href='/auth/logout') Log out
+//-       // /.Navbar
+//-     main
+//-       // Main layout
+//-       .container
+//-         .row
+//-           // Main column
+//-           .col-lg-8
+//-             // Post
+//-             .post-wrapper
+//-               .container.row.justify-content-center
+//-                 .col-10
+//-                   form.waves-effect.waves-light(method= 'post', action= '/subjects', onsubmit= 'getSearch()')
+//-                     input#search.form-control(type='search', placeholder='Search')
+//-                     //- .text-center
+//-                     //-         button.btn.btn-indigo Search  
+//-                   .list-group
+//-                     a.list-group-item.active(href='#')
+//-                       p#count
+//-                     li#table-body
+//-     include customfooter

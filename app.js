@@ -16,32 +16,12 @@ const router = express.Router();
 
 
 var index = require('./routes/index');
-var departments = require('./routes/departments');
+var subjects = require('./routes/subjects');
 var auth = require('./routes/auth');
 //var hbs = require('express-handlebars');
 //var expressValidator = require('express-validator');
 
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { //return res.render('login', {error:err}); 
-//                 console.log(err)}
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (!user.validPassword(password)) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
-
-
-
-// var MongoURI = 'mongodb://mod2:rudeemman@ds161048.mlab.com:61048/student'
-var MongoURI = 'mongodb://RE:rudeemman@ds133249.mlab.com:33249/modules'
-
+var MongoURI = 'mongodb://cpeportal:cpeportal@ds145118.mlab.com:45118/cpeportal'
 
 
 var app = express();
@@ -67,37 +47,16 @@ app.use(session({
     }
 }));
 
-//Express Validator
-// app.use(expressValidator({
-//   errorFormatter: function(param, msg, value) {
-//       var namespace = param.split('.')
-//       , root    = namespace.shift()
-//       , formParam = root;
-
-//     while(namespace.length) {
-//       formParam += '[' + namespace.shift() + ']';
-//     }
-//     return {
-//       param : formParam,
-//       msg   : msg,
-//       value : value
-//     };
-//   }
-// }));
-
 app.use(passport.initialize());
 app.use(passport.session());
 
 var User = require('./models/user');
-var Department = require('./models/departments');
+var Subject = require('./models/subjects');
 
 passport.use(User.createStrategy());
 
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
-
 
 mongoose.connect(MongoURI, function(err, res) {
     if (err) {
@@ -107,11 +66,11 @@ mongoose.connect(MongoURI, function(err, res) {
     }
 });
 
-restify.serve(router, Department);
+restify.serve(router, Subject);
 app.use(router);
 
 app.use('/', index);
-app.use('/departments', departments);
+app.use('/subjects', subjects);
 app.use('/auth', auth);
 
 // catch 404 and forward to error handler

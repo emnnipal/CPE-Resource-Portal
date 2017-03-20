@@ -1,85 +1,170 @@
+//- extends layout
+
+//- block content
+//-   section.hero.is-fullheight.is-dark.is-bold
+//-     .hero-head
+//-       .container
+//-         nav.nav
+//-           .container
+//-             .nav-left
+//-               a.nav-item(href='/')
+//-                 img(src='/images/bulma-white.png', alt='Description')
+//-             span.nav-toggle
+//-               span
+//-               span
+//-               span
+//-             .nav-right.nav-menu
+//-               a.nav-item(href='/')
+//-                 | Home
+//-               a.nav-item(href='/subjects')
+//-                 | Subjects
+//-               a.nav-item(href='/subjects/addnew')
+//-                 | Add Data
+//-               a.nav-item(href='/auth/logout')
+//-                 | Log Out
+                
+//-     .hero-body
+//-       .container
+//-         .columns.is-vcentered
+//-           .column.is-4.is-offset-4
+//-             h1.title
+//-               | Edit Data
+//-             .box
+//-               if (error)
+//-                 //-for err in error
+//-                 .notification.is-danger
+
+//-                   //--var er = error.message
+//-                   //-- var a = er.slice(1,10)
+//-                   //- h1= a
+//-                   | #{error}
+//-               form(method="POST", action="/subjects/#{update._id}/update")
+//-                 label.label.is-danger 
+//-                   | Department Name 
+//-                   strong.iscolor *
+//-                 //- if (error == 'ValidationError: Please fill the Department Name')
+//-                 //-   p.control.has-icon.has-icon-right
+//-                 //-     input.input.is-danger(type="text", placeholder="Department Name", name="dep_name", value="#{update.dep_name}")
+//-                 //-     span.icon.is-small
+//-                 //- else
+//-                 p.control
+//-                   input.input(type="text", placeholder="", name="dep_name", value="#{update.dep_name}")
+//-                 label.label 
+//-                   | Abbreviation 
+//-                   strong.iscolor *
+//-                 p.control
+//-                   input.input(type="text", placeholder="", name="abbrv", value="#{update.abbrv}")
+//-                 label.label 
+//-                   | Secretary/Head 
+//-                   strong.iscolor *
+
+//-                 p.control
+//-                   input.input(type="text", placeholder="", name="head", value="#{update.head}")
+//-                 label.label Official Website
+//-                 p.control
+//-                   input.input(type="url", placeholder="http://www.example.com", name="website", value="#{update.website}")
+//-                 label.label Contact Number
+//-                 p.control
+//-                   input.input(type="value", placeholder="Contact Number", name="contact", value="#{update.contact}")
+//-                 label.label Facebook
+//-                 p.control
+//-                   input.input(type="text", placeholder="http://www.facebook.com/example", name="fb", value="#{update.fb}")
+//-                 label.label Twitter
+//-                 p.control
+//-                   input.input(type="text", placeholder="http://www.twitter.com/example", name="tw", value="#{update.tw}")
+//-                 label.label Image
+//-                 p.control
+//-                   input.input(type="text", placeholder="Image (URL)", name="picture", value="#{update.picture}")
+//-                 p.control
+//-                   button.button.is-dark(type="submit" ) Submit
+//-                   span 
+//-                   a.btn.btn-link(href="/subjects/#{update._id}")
+//-                         button.button.is-dark(type="button") Cancel
+              
+  
+//-   include footer
+
+
 extends layout
 
 block content
-  section.hero.is-fullheight.is-dark.is-bold
-    .hero-head
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
       .container
-        nav.nav
-          .container
-            .nav-left
-              a.nav-item(href='/')
-                img(src='/images/bulma-white.png', alt='Description')
-            span.nav-toggle
-              span
-              span
-              span
-            .nav-right.nav-menu
-              a.nav-item(href='/')
-                | Home
-              a.nav-item(href='/departments')
-                | Departments
-              a.nav-item(href='/departments/addnew')
-                | Add Data
-              a.nav-item(href='/auth/logout')
-                | Log Out
-                
-    .hero-body
-      .container
-        .columns.is-vcentered
-          .column.is-4.is-offset-4
-            h1.title
-              | Edit Data
-            .box
-              if (error)
-                //-for err in error
-                .notification.is-danger
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item
+              a.nav-link(href='/subjects') Subjects    
+            li.nav-item.active
+              a.nav-link(href='/subjects/addnew') Add
+                span.sr-only (current)
+          li.nav-item.form-inline
+              a.nav-link(href='/auth/logout') Log out
+    .view
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          li
+            br
+            br
+            br
+            .container.row.justify-content-center
+              .col-6
+                .card-block
+                  form(method="POST", action="/subjects/#{update._id}/update")
+                    // Header
+                    .text-center
+                      h3
+                        i.fa
+                        |  Edit subject
+                      hr.mt-2.mb-2
+                    // Body
+                    
+                    br
+                    // Body
+                    .md-form
+                      i.fa.prefix
+                      input#form3.form-control(type='text', name="name", value="#{update.name}")
+                      label(for='form3') Subject Name*
+                    .md-form
+                      i.fa.prefix
+                      input#form2.form-control(type='text', name="code", value="#{update.code}")
+                      label(for='form2') Subject Code*
+                    .md-form
+                      i.fa.prefix
+                      input#form32.form-control(type='text', name="year", value="#{update.year}")
+                      label(for='form32') Subject Year*
+                    .md-form
+                      i.fa.prefix
+                      input#form34.form-control(type='text', name="sem", value="#{update.sem}")
+                      label(for='form34') Subject Sem*
+                    .text-center
+                      button.btn.btn-default(type="submit") Submit
+                      a.btn.btn-default(href='/subjects/#{update._id}') Cancel
+                    table.table
+                      thead
+                        tr
+                          th Item Description
+                          th Item Type
+                          th Upload Date
+                          th Action
+                      tbody
+                        for item in items
+                          if (item.subject === update.code)
+                            tr
+                              td 
+                                a(href="#{item.link}" target="_blank") #{item.description}
+                              td #{item.type}
+                              td #{moment(item.createdate).format("LLL")}
+                              td
+                                a.red-text(href="/subjects/delete/#{update._id}/#{item._id}")
+                                  i.fa
+                                    | Delete
 
-                  //--var er = error.message
-                  //-- var a = er.slice(1,10)
-                  //- h1= a
-                  | #{error}
-              form(method="POST", action="/departments/#{update._id}/update")
-                label.label.is-danger 
-                  | Department Name 
-                  strong.iscolor *
-                //- if (error == 'ValidationError: Please fill the Department Name')
-                //-   p.control.has-icon.has-icon-right
-                //-     input.input.is-danger(type="text", placeholder="Department Name", name="dep_name", value="#{update.dep_name}")
-                //-     span.icon.is-small
-                //- else
-                p.control
-                  input.input(type="text", placeholder="", name="dep_name", value="#{update.dep_name}")
-                label.label 
-                  | Abbreviation 
-                  strong.iscolor *
-                p.control
-                  input.input(type="text", placeholder="", name="abbrv", value="#{update.abbrv}")
-                label.label 
-                  | Secretary/Head 
-                  strong.iscolor *
 
-                p.control
-                  input.input(type="text", placeholder="", name="head", value="#{update.head}")
-                label.label Official Website
-                p.control
-                  input.input(type="url", placeholder="http://www.example.com", name="website", value="#{update.website}")
-                label.label Contact Number
-                p.control
-                  input.input(type="value", placeholder="Contact Number", name="contact", value="#{update.contact}")
-                label.label Facebook
-                p.control
-                  input.input(type="text", placeholder="http://www.facebook.com/example", name="fb", value="#{update.fb}")
-                label.label Twitter
-                p.control
-                  input.input(type="text", placeholder="http://www.twitter.com/example", name="tw", value="#{update.tw}")
-                label.label Image
-                p.control
-                  input.input(type="text", placeholder="Image (URL)", name="picture", value="#{update.picture}")
-                p.control
-                  button.button.is-dark(type="submit" ) Submit
-                  span 
-                  a.btn.btn-link(href="/departments/#{update._id}")
-                        button.button.is-dark(type="button") Cancel
-              
-  
-  include footer
+    include footer

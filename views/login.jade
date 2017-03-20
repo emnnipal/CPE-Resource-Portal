@@ -1,56 +1,52 @@
 extends layout
 
 block content
-  section.hero.is-fullheight.is-dark.is-bold
-    .hero-head
+    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
       .container
-        nav.nav
-          .container
-            .nav-left
-              a.nav-item(href='/')
-                img(src='/images/bulma-white.png', alt='Description')
-            span.nav-toggle
-              span
-              span
-              span
-            .nav-right.nav-menu
-              a.nav-item(href='/')
-                | Home
-              a.nav-item.is-active(href='/auth/login')
-                | Login
-              a.nav-item(href='/auth/register')
-                | Register
-    .hero-body
-      .container
-        .columns.is-vcentered
-          .column.is-4.is-offset-4
-            h1.title
-              | Login
-            .box
-              if (error)
-                //--var eArr = []
-                //--var e
-                //--var a
-                //-for e in Object.keys(error.errors)
-                //-  eArr.push(e)
-                //-for a in eArr
-                .notification.is-danger
-                  | #{error}
-                  //--var er = "#{error}"
-                  //--var a = er.slice(1)
-                  //-h1= a
-              form(role="form", method="POST", action="/auth/login/")
-                label.label 
-                  | Username
-                  input.input(type="text", placeholder="", name="username")
-                label.label 
-                  | Password 
-                  input.input(type="password", placeholder="", name="password")
-                p.control
-                  .block
-                      button.button.is-dark(type="submit" , value="Log In") Log In
-                      span        
-                      a.btn.btn-link(href="/")
-                        button.button.is-dark(type="button") Cancel
-                  
-  include footer
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item.active
+              a.nav-link(href='/auth/login') Login
+                span.sr-only (current)
+            li.nav-item
+              a.nav-link(href='/auth/register') Register
+    .view
+      .full-bg-img.flex-center
+        ul.animated.fadeInUp
+          li
+            br
+            .container.row.justify-content-center
+              .col-6
+                .card
+                  .card-block
+                    // Header
+                    form(role="form", method="POST", action="/auth/login/")
+                      .form-header.blue-gradient
+                        h3
+                          i.fa
+                          |  Login:
+                      .md-form
+                        i.fa.prefix
+                        input#form2.form-control(type='text', name='username')
+                        label(for='form2') Your Username
+                      .md-form
+                        i.fa.prefix
+                        input#form4.form-control(type='password', name='password')
+                        label(for='form4') Your password
+                      .text-center
+                        button.btn.btn-indigo(type='submit' , value='Log In') Login
+                    // Footer
+                    .modal-footer
+                      .options
+                        p
+                          | Not a member? 
+                          a(href='/auth/register') Sign Up
+
+    include footer
