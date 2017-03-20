@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
+    nav.navbar.navbar-toggleable-md.navbar-dark.green
       .container
         button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
           span.navbar-toggler-icon
@@ -28,7 +28,7 @@ block content
                   .card-block
                     // Header
                     form(role="form", method="POST", action="/auth/login/")
-                      .form-header.blue-gradient
+                      .form-header.success-color-dark
                         h3
                           i.fa
                           |  Login:
@@ -41,7 +41,7 @@ block content
                         input#form4.form-control(type='password', name='password')
                         label(for='form4') Your password
                       .text-center
-                        button.btn.btn-indigo(type='submit' , value='Log In') Login
+                        button.btn.success-color-dark(type='submit' , value='Log In') Login
                     // Footer
                     .modal-footer
                       .options

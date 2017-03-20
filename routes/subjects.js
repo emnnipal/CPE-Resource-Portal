@@ -190,7 +190,7 @@ router.route('/delete/:subjectId/:id')
                 console.log(err);
             }else{
               console.log('delete success')
-              res.redirect('/subjects/'+subjectId)
+              res.redirect('/subjects/'+subjectId+'/update')
             }
         });
   });
