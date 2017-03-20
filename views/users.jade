@@ -1,0 +1,57 @@
+extends customlayout
+
+block content
+  // Navbar
+  nav.navbar.navbar-toggleable-md.navbar-dark.green
+    .container
+      button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+        span.navbar-toggler-icon
+      a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item
+              a.nav-link(href='/subjects') Subjects    
+            li.nav-item
+              a.nav-link(href='/subjects/addnew') Add
+          li.nav-item.form-inline
+              a.nav-link(href='/auth/logout') Log out
+  .container
+    ul.animated.fadeInUp
+      li
+        .row.justify-content-center
+                .col-8
+                  .card-block
+                      // Header
+                      .text-center
+                        h3
+                          i.fa
+                          |  Accounts
+                        hr.mt-2.mb-2
+                        // Body
+                
+                      br
+                      br
+                      table.table
+                        thead
+                          tr
+                            th User 
+                            th Account Type
+                            th Action
+                        tbody
+                          for user in users
+                              tr
+                                td #{user.username}
+                                td #{user.acctype}
+                                td
+                                  a(href="/subjects/edit/users/modify/#{user._id}")
+                                    button.btn.btn-primary
+                                      | Edit  
+                                  a.red-text(href="/subjects/edit/users/delete/#{user._id}")
+                                    button.btn.btn-danger
+                                      | Delete
+
+  include customfooter

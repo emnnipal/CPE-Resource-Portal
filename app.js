@@ -18,8 +18,7 @@ const router = express.Router();
 var index = require('./routes/index');
 var subjects = require('./routes/subjects');
 var auth = require('./routes/auth');
-//var hbs = require('express-handlebars');
-//var expressValidator = require('express-validator');
+var portal = require('./routes/portal');
 
 var MongoURI = 'mongodb://cpeportal:cpeportal@ds145118.mlab.com:45118/cpeportal'
 
@@ -69,9 +68,13 @@ mongoose.connect(MongoURI, function(err, res) {
 restify.serve(router, Subject);
 app.use(router);
 
+restify.serve(router, User);
+app.use(router);
+
 app.use('/', index);
 app.use('/subjects', subjects);
 app.use('/auth', auth);
+app.use('/portal', portal);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

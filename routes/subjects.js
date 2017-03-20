@@ -3,21 +3,13 @@ var router = express.Router();
 var Subject = require('../models/subjects');
 var Item = require('../models/item');
 var moment = require('moment-timezone');
+var User = require('../models/user');
 
 router.use(function(req, res, next) {
-  if (!req.user) {
-    res.redirect('/auth/login')
+  if (req.user.acctype!=='admin') {
+    res.redirect('/portal')
   }
   next();
-});
-
-router.get('/', function(req, res) {
-  Subject.find( function(err, data, count) {
-    res.render('subjects', {subjects: data});
-  })
-});
-router.post('/', function(req, res){
-  res.redirect('/subjects')
 });
 
 router.post('/addnew', function(req, res) {
@@ -41,36 +33,62 @@ router.get('/addnew', function(req, res) {
   res.render('addnew', {data: {}});
 });
 	
-router.route('/:subjectId')
+router.get('/edit/users', function(req, res) {
+  User.find( function(err, data, count) {
+    res.render('users', {users: data});
+  })
+});
+
+router.route('/edit/users/delete/:id')
   .all(function(req, res, next) {
-    subjectId = req.params.subjectId;
-    subject = {};
-    Subject.findById(subjectId, function(err, data) { 
-      subject = data;
-      Item.find(function(err,data){
-      items = [];
-      if(err){
-        res.render('subjectdata', {error: err});
-      }
-      else{
-        // for(let x=0;x<data.length;x++){
-        //     if(subject.code===data[x].subject){
-        //         filtered.push(data[x]);
-        //     }
-        // }
-        items = data;
-      }
-      if(data){
-        next();
-      }
-      });
-      
+    userId = req.params.id;
+    user = {};
+    User.findById(userId, function(err, c) {
+      user = c;
+      next();    
     });
-    
   })
   .get(function(req, res) {
-    res.render('subjectdata', {subjectdata: subject, moment:moment,items: items});
+    user.remove((err,item)=>{
+            if(err){
+                console.log(err);
+            }else{
+              console.log('delete user success')
+              res.redirect('/subjects/edit/users')
+            }
+        });
+  });
+
+router.route('/edit/users/modify/:id')
+  .all(function(req, res, next) {
+    userId = req.params.id;
+    user = {};
+    User.findById(userId, function(err, data) {
+      user = data;
+      next();
+    });
   })
+  .get(function(req, res) {
+    res.render('editusers', {update: user});
+  })
+  .post(function(req, res) {
+    user.username = req.body.username,
+    user.first_name = req.body.first_name,
+    user.last_name = req.body.last_name,
+    user.email = req.body.email,
+    user.acctype = req.body.acctype,
+    user.save(function(err, data, count) {
+      if(err) {
+        // res.status(400).send('Error saving data: ' + err);
+        console.log(err)
+        res.render('update', {update: subject, error:err})
+      } else {
+        res.redirect('/subjects/edit/users');
+      }
+    });
+  })
+
+
 
 router.route('/:subjectId/update')
   .all(function(req, res, next) {

@@ -1,0 +1,68 @@
+
+extends customlayout
+
+block content
+    nav.navbar.navbar-toggleable-md.navbar-dark.green
+      .container
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+          span.navbar-toggler-icon
+        a.navbar-brand(href='#')
+          strong Navbar
+        #navbarNav1.collapse.navbar-collapse
+          ul.navbar-nav.mr-auto
+            li.nav-item
+              a.nav-link(href='/')
+                | Home 
+            li.nav-item
+              a.nav-link(href='/subjects') Subjects    
+            li.nav-item
+              a.nav-link(href='/subjects/addnew') Add
+          li.nav-item.form-inline
+              a.nav-link(href='/auth/logout') Log out
+    .container
+      .container
+        ul.animated.fadeInUp
+          li
+            .row.justify-content-center
+              .col-6
+                  .card-block
+                    form(method="POST", action="/subjects/edit/users/modify/#{update._id}")
+                      // Header
+                      .text-center
+                        h3
+                          i.fa
+                          |  Edit User
+                        hr.mt-2.mb-2
+                      // Body
+                      
+                      br
+                      // Body
+                      .md-form
+                        i.fa.prefix
+                        input#form3.form-control(type='text', name="username", value="#{update.username}")
+                        label(for='form3') Username*
+                      .md-form
+                        i.fa.prefix
+                        input#form2.form-control(type='text', name="first_name", value="#{update.first_name}")
+                        label(for='form2') First Name
+                      .md-form
+                        i.fa.prefix
+                        input#form32.form-control(type='text', name="last_name", value="#{update.last_name}")
+                        label(for='form32') Last Name
+                      .md-form
+                        i.fa.prefix
+                        input#form32.form-control(type='text', name="email", value="#{update.email}")
+                        label(for='form32') Email
+                      .md-form
+                        i.fa.prefix
+                        input#form34.form-control(type='text', name="acctype", value="#{update.acctype}")
+                        label(for='form34') Account Type(admin or student)
+                      .text-center
+                        button.btn.btn-default(type="submit") Edit
+                        a.btn.btn-primary(href='/subjects/edit/users') Cancel
+                      
+
+
+    include customfooter
+
+

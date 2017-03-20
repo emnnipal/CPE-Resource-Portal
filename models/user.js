@@ -17,6 +17,7 @@ var User = new Schema({
 	},
     first_name: String,
     last_name: String,
+    acctype: String,
     email: {
         type: String,
         required: [true, 'Email is required.'],

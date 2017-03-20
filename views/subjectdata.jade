@@ -1,147 +1,3 @@
-//- extends layout
-
-//- block content
-//-   section.hero.is-fullheight.is-default.is-dark
-//-     .hero-head
-//-         .container
-//-           nav.nav
-//-             .container
-//-               .nav-left
-//-                 a.nav-item(href='/')
-//-                   img(src='/images/bulma-white.png', alt='Description')
-//-               span.nav-toggle
-//-                 span
-//-                 span
-//-                 span
-//-               .nav-right.nav-menu
-//-                 a.nav-item(href='/')
-//-                   | Home
-//-                 a.nav-item(href='/subjects')
-//-                   | Departments
-//-                 a.nav-item(href='/subjects/addnew')
-//-                   | Add Data
-//-                 a.nav-item(href='/auth/logout')
-//-                   | Log Out
-//-     .hero-body
-//-       .container
-//-         .columns.is-vcentered
-//-           .column.is-5
-//-             figure.image.is-4by3
-//-               img(src="#{subjectdata.picture}", alt='Image')
-//-           .column.is-6.is-offset-1
-//-             h1.title
-//-               | Department Page
-//-             br
-//-             h2.subtitle
-//-               | Department Name: #{subjectdata.dep_name}
-//-             h2.subtitle
-//-               | Abbreviation: #{subjectdata.abbrv}
-//-             h2.subtitle
-//-               | Secretary/Head: #{subjectdata.head}
-//-             h2.subtitle
-//-               | Official Website: 
-//-               a(href="#{subjectdata.website}" target="_blank")
-//-                 strong #{subjectdata.website}
-//-             h2.subtitle
-//-               | Contact Number: #{subjectdata.contact}
-//-             br
-//-             h1.title
-//-               | Social Pages
-//-             br
-//-             h2.subtitle
-//-               | Facebook: 
-//-               a(href="#{subjectdata.fb}" target="_blank")
-//-                 strong #{subjectdata.fb}
-
-//-             h2.subtitle
-//-               | Twitter: 
-//-               a(href="#{subjectdata.tw}" target="_blank")
-//-                 strong #{subjectdata.tw}
-//-             br
-//-             br
-//-             h2.subtitle
-//-               | Creation Date: #{moment(subjectdata.createdate).format("LLL")}
-//-             h2.subtitle
-//-               | Update Date: #{subjectdata.updatedate}
-//-     .tabs.is-fullwidth
-//-         .container
-//-           ul
-//-             li
-//-               a.btn.btn-link(href='/subjects/'+subjectdata._id+'/update')
-//-                 button.button.is-medium(type="button") Edit
-//-             li
-//-               a(href='/subjects/'+subjectdata._id+'/delete')
-//-                 button.button.is-medium(type="button") Delete
-  
-//-   include footer
-
-//- extends layout
-
-//- block content
-//-     nav.navbar.navbar-toggleable-md.navbar-dark.fixed-top.scrolling-navbar
-//-       .container
-//-         button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
-//-           span.navbar-toggler-icon
-//-         a.navbar-brand(href='#')
-//-           strong Navbar
-//-         #navbarNav1.collapse.navbar-collapse
-//-           ul.navbar-nav.mr-auto
-//-             li.nav-item
-//-               a.nav-link(href='/')
-//-                 | Home 
-//-             li.nav-item
-//-               a.nav-link(href='/subjects') Subjects    
-//-             li.nav-item
-//-               a.nav-link(href='/subjects/addnew') Add
-//-           li.nav-item.form-inline
-//-               a.nav-link(href='/auth/logout') Log out
-//-     .view
-//-       .full-bg-img.flex-center
-//-         ul.animated.fadeInUp
-//-           li
-//-             br
-//-             br
-//-             br
-            //- .container.row.justify-content-center
-            //-   .col-8
-            //-     .card-block
-            //-         // Header
-            //-         .text-center
-            //-           h3
-            //-             i.fa
-            //-             |  #{subjectdata.name}
-            //-           hr.mt-2.mb-2
-            //-         // Body
-            //-         p
-            //-         | Subject Code: #{subjectdata.code}
-            //-         br
-            //-         | Subject Year: #{subjectdata.year}
-            //-         br
-            //-         | Subject Sem: #{subjectdata.sem} 
-            //-         br
-            //-         br
-            //-         table.table
-            //-           thead
-            //-             tr
-            //-               th Item Description
-            //-               th Item Type
-            //-               th Upload Date
-            //-           tbody
-            //-             for item in items
-            //-               if (item.subject === subjectdata.code)
-            //-                 //- li
-            //-                 //-   a.panel-block.is-active(href="#{item.link}" ) #{item.description}                        
-            //-                 tr
-            //-                   td 
-            //-                     a(href="#{item.link}" target="_blank") #{item.description}
-            //-                   td #{item.type}
-            //-                   td #{moment(item.createdate).format("LLL")}
-
-                            
-            //-         .text-center
-            //-             a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/update') Edit  
-            //-             a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/Delete') Delete
-            //-             a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/itemnew') Add link
 
 extends customlayout
 
@@ -159,9 +15,10 @@ block content
               a.nav-link(href='/')
                 | Home 
             li.nav-item
-              a.nav-link(href='/subjects') Subjects    
-            li.nav-item
-              a.nav-link(href='/subjects/addnew') Add
+              a.nav-link(href='/portal') Subjects
+            if (user.acctype === 'admin')
+              li.nav-item
+                a.nav-link(href='/subjects/addnew') Add
           li.nav-item.form-inline
               a.nav-link(href='/auth/logout') Log out
   .container
@@ -204,8 +61,10 @@ block content
 
                               
                       .text-center
-                          a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/update') Edit
-                          a.btn.btn-default(href='/subjects/'+subjectdata._id+'/itemnew') Add link
+                          if (user.acctype ==='admin')
+                            a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/update') Edit
+                            a.btn.btn-default(href='/subjects/'+subjectdata._id+'/itemnew') Add link
+                          a.btn.btn-success(href='/portal') Back
           
 
   include customfooter

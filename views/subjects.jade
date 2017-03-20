@@ -1,54 +1,3 @@
-//- extends layout
-
-//- block content
-//-   section.hero.is-medium.is-bold.is-dark
-//-     .hero-head
-//-         .container
-//-           nav.nav
-//-             .container
-//-               .nav-left
-//-                 a.nav-item(href='/')
-//-                   img(src='/images/bulma-white.png', alt='Description')
-//-               span.nav-toggle
-//-                 span
-//-                 span
-//-                 span
-//-               .nav-right.nav-menu
-//-                 a.nav-item(href='/')
-//-                   | Home
-//-                 a.nav-item.is-active(href='/subjects')
-//-                   | Departments
-//-                 a.nav-item(href='/subjects/addnew')
-//-                   | Add Data
-//-                 a.nav-item(href='/auth/logout')
-//-                   | Log Out
-//-     .hero-body
-//-       .container.has-text-centered
-//-           .columns.is-vcentered
-//-             .column.is-half.is-offset-6
-//-               form(method= 'post', action= '/subjects', onsubmit= 'getSearch()')
-//-                 p.control.has-addons.has-text-centered
-//-                   input#search.input.is-expanded.is-medium(type='search', placeholder='Search Subjects')
-//-                   button.button.is-medium.is-outlined(type="submit")
-//-                     | Search
-//-       br
-//-       .container 
-//-         nav.panel
-//-           p#count.panel-heading
-//-             | Subjects:                        
-//-           .box
-//-             ul
-//-               //- thead
-//-                 //-   for data in departments
-//-                 //-     li
-//-                 //-       a.panel-block.is-active(href='/departments/' + data._id ) #{data.dep_name}
-//-                 //-         span.panel-icon
-//-                 //-           i.fa.fa-book
-//-               li#table-body
-      
-//-   include footer
-
-
 extends customlayout
 
 block content
@@ -67,8 +16,11 @@ block content
             li.nav-item.active
               a.nav-link(href='/subjects') Subjects
                 span.sr-only (current)
-            li.nav-item
-              a.nav-link(href='/subjects/addnew') Add
+            if (user.acctype==='admin')
+              li.nav-item
+                a.nav-link(href='/subjects/addnew') Add
+              li.nav-item
+                a.nav-link(href='/subjects/edit/users') Accounts
           li.nav-item.form-inline
               a.nav-link(href='/auth/logout') Log out
   br
@@ -79,10 +31,10 @@ block content
         li
           .row.justify-content-center
                   .col-10
-                    form.waves-effect.waves-light(method= 'post', action= '/subjects', onsubmit= 'getSearch()')
+                    form.waves-effect.waves-light(method= 'post', action= '/portal', onsubmit= 'getSearch()')
                       input#search.form-control(type='search', placeholder='Search')
                       //- .text-center
-                      //-         button.btn.btn-indigo Search  
+                      //-         button.btn.btn-indigo(type="submit") Search  
                     .list-group
                       a.list-group-item.primary(href='#')
                         | Subjects
