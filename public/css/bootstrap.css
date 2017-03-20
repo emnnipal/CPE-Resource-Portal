@@ -659,7 +659,9 @@ mark,
   border-left: 0;
 }
 
-
+.blockquote-reverse .blockquote-footer::before {
+  content: "";
+}
 
 .blockquote-reverse .blockquote-footer::after {
   content: "\00A0 \2014";

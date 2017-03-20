@@ -81,8 +81,7 @@
 //-                   a.btn.btn-link(href="/subjects/#{update._id}")
 //-                         button.button.is-dark(type="button") Cancel
               
-  
-//-   include footer
+//- include footer
 
 
 extends layout
@@ -101,9 +100,8 @@ block content
                 | Home 
             li.nav-item
               a.nav-link(href='/subjects') Subjects    
-            li.nav-item.active
+            li.nav-item
               a.nav-link(href='/subjects/addnew') Add
-                span.sr-only (current)
           li.nav-item.form-inline
               a.nav-link(href='/auth/logout') Log out
     .view
@@ -168,3 +166,88 @@ block content
 
 
     include footer
+
+
+//- extends customlayout
+
+//- block content
+//-     header
+//-       nav.navbar.navbar-toggleable-md.navbar-dark
+//-         .container
+//-           button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
+//-             span.navbar-toggler-icon
+//-           a.navbar-brand(href='#')
+//-           strong Navbar
+//-         #navbarNav1.collapse.navbar-collapse
+//-           ul.navbar-nav.mr-auto
+//-             li.nav-item
+//-               a.nav-link(href='/')
+//-                 | Home 
+//-             li.nav-item
+//-               a.nav-link(href='/subjects') Subjects    
+//-             li.nav-item
+//-               a.nav-link(href='/subjects/addnew') Add
+//-           li.nav-item.form-inline
+//-               a.nav-link(href='/auth/logout') Log out
+//-       // /.Navbar
+//-     main
+//-       // Main layout
+//-       .container
+//-         .row
+//-           // Main column
+//-           .col-lg-8
+//-             // Post
+//-             .post-wrapper
+//-               .container.row.justify-content-center
+//-                 .col-6
+//-                   .card-block
+//-                     form(method="POST", action="/subjects/#{update._id}/update")
+//-                       // Header
+//-                       .text-center
+//-                         h3
+//-                           i.fa
+//-                           |  Edit subject
+//-                         hr.mt-2.mb-2
+//-                       // Body
+                      
+//-                       br
+//-                       // Body
+//-                       .md-form
+//-                         i.fa.prefix
+//-                         input#form3.form-control(type='text', name="name", value="#{update.name}")
+//-                         label(for='form3') Subject Name*
+//-                       .md-form
+//-                         i.fa.prefix
+//-                         input#form2.form-control(type='text', name="code", value="#{update.code}")
+//-                         label(for='form2') Subject Code*
+//-                       .md-form
+//-                         i.fa.prefix
+//-                         input#form32.form-control(type='text', name="year", value="#{update.year}")
+//-                         label(for='form32') Subject Year*
+//-                       .md-form
+//-                         i.fa.prefix
+//-                         input#form34.form-control(type='text', name="sem", value="#{update.sem}")
+//-                         label(for='form34') Subject Sem*
+//-                       .text-center
+//-                         button.btn.btn-default(type="submit") Submit
+//-                         a.btn.btn-default(href='/subjects/#{update._id}') Cancel
+//-                       table.table
+//-                         thead
+//-                           tr
+//-                             th Item Description
+//-                             th Item Type
+//-                             th Upload Date
+//-                             th Action
+//-                         tbody
+//-                           for item in items
+//-                             if (item.subject === update.code)
+//-                               tr
+//-                                 td 
+//-                                   a(href="#{item.link}" target="_blank") #{item.description}
+//-                                 td #{item.type}
+//-                                 td #{moment(item.createdate).format("LLL")}
+//-                                 td
+//-                                   a.red-text(href="/subjects/delete/#{update._id}/#{item._id}")
+//-                                     i.fa
+//-                                       | Delete
+//-     include customfooter
