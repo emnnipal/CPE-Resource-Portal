@@ -178,7 +178,7 @@ router.route('/:subjectId/delete')
         res.status(400).send("Error removing data: " + err);
       } else {
         // res.send('Data removed');
-        res.redirect('/subjects');
+        res.redirect('/portal');
       }
     });
   });
