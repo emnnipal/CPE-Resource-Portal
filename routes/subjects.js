@@ -24,7 +24,7 @@ router.post('/addnew', function(req, res) {
         console.log(err)
         res.render('addnew', {error:err})
       } else {
-        res.redirect('/subjects')
+        res.redirect('/portal')
       }
     })
 });
