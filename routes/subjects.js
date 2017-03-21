@@ -153,7 +153,7 @@ router.route('/:subjectId/itemnew')
         res.render('itemnew', {error:err})
       } else {
         // res.send("New Data created");
-        res.redirect('/subjects/'+subjectId)
+        res.redirect('/portal/'+subjectId)
       }
     })
   })
