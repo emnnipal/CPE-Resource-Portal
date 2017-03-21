@@ -125,7 +125,7 @@ router.route('/:subjectId/update')
         console.log(err)
         res.render('update', {update: subject, error:err})
       } else {
-        res.redirect('/subjects/'+subjectId);
+        res.redirect('/portal/'+subjectId);
       }
     });
   })
