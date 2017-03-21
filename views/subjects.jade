@@ -7,14 +7,13 @@ block content
       button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarNav1', aria-controls='navbarNav1', aria-expanded='false', aria-label='Toggle navigation')
         span.navbar-toggler-icon
       a.navbar-brand(href='#')
-          strong Navbar
-        #navbarNav1.collapse.navbar-collapse
+      #navbarNav1.collapse.navbar-collapse
           ul.navbar-nav.mr-auto
             li.nav-item
               a.nav-link(href='/')
                 | Home 
             li.nav-item.active
-              a.nav-link(href='/subjects') Subjects
+              a.nav-link(href='/portal') Subjects
                 span.sr-only (current)
             if (user.acctype==='admin')
               li.nav-item
