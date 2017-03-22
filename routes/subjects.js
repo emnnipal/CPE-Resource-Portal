@@ -6,7 +6,9 @@ var moment = require('moment-timezone');
 var User = require('../models/user');
 
 router.use(function(req, res, next) {
-  if (req.user.acctype!=='admin') {
+  if (!req.user) {
+    res.redirect('/auth/login')
+  }else if (req.user.acctype!=='admin') {
     res.redirect('/portal')
   }
   next();
