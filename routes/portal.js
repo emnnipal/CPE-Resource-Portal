@@ -20,6 +20,60 @@ router.get('/', function(req, res) {
 router.post('/', function(req, res){
   res.redirect('/portal')
 });
+
+router.route('/itemnew/:subjectId')
+  .all(function(req, res, next) {
+    subjectId = req.params.subjectId;
+    subject = {};
+    Subject.findById(subjectId, function(err, data) {
+      subject = data;
+      next();
+    });
+    
+  })
+  .post(function(req,res){
+  if(req.user.acctype==='admin'){
+    new Item({
+        description: req.body.description,
+        type: req.body.type,
+        link: req.body.link,
+        subject: subject.code,
+        createdate: moment().tz("Asia/Manila").format('LLL'),
+        approval: 'approved', 
+      }).save(function(err, data, count) {
+        if(err) {
+          console.log(err)
+          res.render('itemnew', {error:err})
+        } else {
+          // res.send("New Data created");
+          res.redirect('/portal/'+subjectId)
+        }
+      })
+    }else{
+    new Item({
+        description: req.body.description,
+        type: req.body.type,
+        link: req.body.link,
+        subject: subject.code,
+        createdate: moment().tz("Asia/Manila").format('LLL'),
+        approval: '',
+      }).save(function(err, data, count) {
+        if(err) {
+          console.log(err)
+          res.render('itemnew', {error:err})
+        } else {
+          res.redirect('/portal/'+subjectId);
+          // res.json({user:req.user});
+          // res.render('subjects')
+        }
+      })
+    }
+  })
+  .get(function(req, res) {
+    res.render('itemnew', {subject: subject, moment:moment, user:req.user});
+  })
+
+
 	
 router.route('/:subjectId')
   .all(function(req, res, next) {

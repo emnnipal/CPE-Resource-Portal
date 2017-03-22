@@ -20,7 +20,7 @@ block content
                 a.nav-link(href='/subjects/addnew') Add
               li.nav-item
                 a.nav-link(href='/subjects/edit/users') Accounts
-              li.nav-item
+              li.nav-item.active
                 a.nav-link(href='/subjects/approval') Item Approval
           li.nav-item.form-inline
               a.nav-link(href='/auth/logout') Log out
@@ -34,15 +34,8 @@ block content
                       .text-center
                         h3
                           i.fa
-                          |  #{subjectdata.name}
+                          |  Item Approval
                         hr.mt-2.mb-2
-                        // Body
-                        p
-                        | Subject Code: #{subjectdata.code}
-                        br
-                        | Subject Year: #{subjectdata.year}
-                        br
-                        | Subject Sem: #{subjectdata.sem} 
                       br
                       br
                       table.table
@@ -50,23 +43,28 @@ block content
                           tr
                             th Item Description
                             th Item Type
-                            th Upload Date
+                            th Subject Code
+                            th Submitted Date
+                            th Actions
                         tbody
                           for item in items
-                            if (item.subject === subjectdata.code && item.approval ==='approved')
+                            if (item.approval!=='approved')
                               //- li
                               //-   a.panel-block.is-active(href="#{item.link}" ) #{item.description}                        
                               tr
                                 td 
                                   a(href="#{item.link}" target="_blank") #{item.description}
                                 td #{item.type}
+                                td #{item.subject}
                                 td #{moment(item.createdate).format("LLL")}
-
-                              
+                                td 
+                                  a.red-text(href="/subjects/approval/#{item._id}")
+                                    button.btn.btn-success
+                                      | Approve 
+                                  a.red-text(href="/subjects/approval/#{item._id}/decline")
+                                    button.btn.btn-danger
+                                      | Decline              
                       .text-center
-                          if (user.acctype ==='admin')
-                            a.btn.btn-primary(href='/subjects/'+subjectdata._id+'/update') Edit
-                          a.btn.btn-default(href='/portal/itemnew/'+subjectdata._id) Add link
                           a.btn.btn-success(href='/portal') Back
           
 

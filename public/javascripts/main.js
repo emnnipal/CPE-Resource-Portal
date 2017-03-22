@@ -16,6 +16,27 @@
 //   });
 // });
 
+// function sendReq(){
+//   var regex = /\d+\w+/;
+//   var id = location.pathname.match(regex);
+//   if(id){
+//     $.ajax({
+//       url:'/portal/itemnew/'+id[0],
+//       type: 'GET',
+//     }).done(res=>{
+
+//       alert("Your request is submitted and pending for approval.");
+//       console.log(res);
+//     });
+//   }
+
+// }
+
+// $('#itemnew').click((e)=>{
+//   e.preventDefault();
+//   sendReq();
+// })
+
 function getSearch() {
   localStorage.setItem("search", document.getElementById('search').value);
 }

@@ -16,7 +16,10 @@ var itemSchema = new Schema({
       },
   subject:{
         type: String, ref: 'code',
-        required: [true,"subject code is undefined"]
+        required: [true,"Subject code is undefined"]
+    },
+  approval:{
+        type: String,
     },
   createdate: Date,
   updatedate: String,

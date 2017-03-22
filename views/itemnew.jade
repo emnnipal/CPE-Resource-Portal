@@ -12,12 +12,14 @@ block content
               a.nav-link(href='/')
                 | Home 
             li.nav-item
-              a.nav-link(href='/subjects') Subjects    
-            li.nav-item.active
-              a.nav-link(href='/subjects/addnew') Add
-                span.sr-only (current)
-            li.nav-item
+              a.nav-link(href='/subjects') Subjects
+            if (user.acctype==='admin') 
+              li.nav-item
+                a.nav-link(href='/subjects/addnew') Add
+              li.nav-item
                 a.nav-link(href='/subjects/edit/users') Accounts
+              li.nav-item
+                a.nav-link(href='/subjects/approval') Item Approval
           li.nav-item.form-inline
               a.nav-link(href='/auth/logout') Log out
     .view
@@ -30,12 +32,12 @@ block content
             .container.row.justify-content-center
               .col-6
                 .card-block
-                  form(method="POST", action="/subjects/#{subject._id}/itemnew")
+                  form(method="POST", action="/portal/itemnew/#{subject._id}")
                     // Header
                     .text-center
                       h3
                         i.fa
-                        |  Add a subject
+                        |  Add an item
                       hr.mt-2.mb-2
                     // Body
                     if (error)
@@ -72,11 +74,10 @@ block content
                     .md-form
                       i.fa.prefix
                       input#form32.form-control(type='text', name="link")
-                      label(for='form32') URL*
-                    
-                                         
+                      label(for='form32') URL*                                         
                     .text-center
-                      button.btn.success-color-dark Submit
+                      button.btn.default-color-dark(type="submit", id="itemnew") Submit
+                      a.btn.success-color-dark(href='/portal/#{subject._id}') Back
                       .call
                         br
                         p

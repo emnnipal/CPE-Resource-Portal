@@ -41,6 +41,8 @@ router.get('/edit/users', function(req, res) {
   })
 });
 
+
+
 router.route('/edit/users/delete/:id')
   .all(function(req, res, next) {
     userId = req.params.id;
@@ -132,36 +134,52 @@ router.route('/:subjectId/update')
     });
   })
 
-router.route('/:subjectId/itemnew')
+router.get('/approval', function(req, res) {
+  Item.find( function(err, data, count) {
+    res.render('approval', {items: data, user:req.user, moment:moment});
+  })
+});
+
+router.route('/approval/:itemId')
   .all(function(req, res, next) {
-    subjectId = req.params.subjectId;
-    subject = {};
-    Subject.findById(subjectId, function(err, data) {
-      subject = data;
+    itemId = req.params.itemId;
+    item = {};
+    Item.findById(itemId, function(err, data) {
+      item = data;
       next();
     });
-    
-  })
-  .post(function(req,res){
-  new Item({
-      description: req.body.description,
-      type: req.body.type,
-      link: req.body.link,
-      subject: subject.code,
-      createdate: moment().tz("Asia/Manila").format('LLL'),
-    }).save(function(err, data, count) {
-      if(err) {
-        console.log(err)
-        res.render('itemnew', {error:err})
-      } else {
-        // res.send("New Data created");
-        res.redirect('/portal/'+subjectId)
-      }
-    })
   })
   .get(function(req, res) {
-    res.render('itemnew', {subject: subject, moment:moment});
+    item.approval = 'approved',
+    item.save(function(err, data, count) {
+      if(err) {
+        console.log(err)
+        res.render('approval', {update: item, error:err})
+      } else {
+        res.redirect('/subjects/approval');
+      }
+    });
   })
+
+router.route('/approval/:itemId/decline')
+  .all(function(req, res, next) {
+    itemId = req.params.itemId;
+    item = {};
+    Item.findById(itemId, function(err, data) {
+      item = data;
+      next();
+    });
+  })
+  .get(function(req, res) {
+    item.remove(function(err, data) {
+      if(err) {
+        res.status(400).send("Error removing data: " + err);
+      } else {
+        // res.send('Data removed');
+        res.redirect('/subjects/approval');
+      }
+    });
+  });
   
   
 
