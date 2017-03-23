@@ -70,7 +70,7 @@ block content
                             th Action
                         tbody
                           for item in items
-                            if (item.subject === update.code)
+                            if (item.subject === update.code && item.approval ==='approved')
                               tr
                                 td 
                                   a(href="#{item.link}" target="_blank") #{item.description}
