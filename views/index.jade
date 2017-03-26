@@ -15,6 +15,7 @@ block content
             if (user)
               li.nav-item
                 a.nav-link(href='/portal') Subjects
+
               
               if (user.acctype ==='admin')
                 li.nav-item
@@ -23,13 +24,14 @@ block content
                   a.nav-link(href='/subjects/edit/users') Accounts
                 li.nav-item
                   a.nav-link(href='/subjects/approval') Item Approval
+              li.nav-item
+                a.nav-link(href='/auth/logout') Log out
             else
               li.nav-item
                 a.nav-link(href='/auth/login') Login
               li.nav-item
                 a.nav-link(href='/auth/register') Register
-            li.nav-item
-                a.nav-link(href='/auth/logout') Log out
+            
     .view.hm-black-strong
       .full-bg-img.flex-center
         ul.animated.fadeInUp
