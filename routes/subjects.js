@@ -80,12 +80,56 @@ router.route('/edit/users/modify/:id')
     user.first_name = req.body.first_name,
     user.last_name = req.body.last_name,
     user.email = req.body.email,
-    user.acctype = req.body.acctype,
+    // user.acctype = req.body.acctype,
     user.save(function(err, data, count) {
       if(err) {
         // res.status(400).send('Error saving data: ' + err);
         console.log(err)
-        res.render('update', {update: subject, error:err})
+        res.render('update', {error:err})
+      } else {
+        res.redirect('/subjects/edit/users');
+      }
+    });
+  })
+
+router.route('/promote/:id')
+  .all(function(req, res, next) {
+    userId = req.params.id;
+    user = {};
+    User.findById(userId, function(err, data) {
+      user = data;
+      next();
+    });
+  })
+  .get(function(req, res) {
+    user.acctype = 'admin',
+    user.save(function(err, data, count) {
+      if(err) {
+        // res.status(400).send('Error saving data: ' + err);
+        console.log(err)
+        res.render('users', {error:err})
+      } else {
+        res.redirect('/subjects/edit/users');
+      }
+    });
+  })
+
+router.route('/demote/:id')
+  .all(function(req, res, next) {
+    userId = req.params.id;
+    user = {};
+    User.findById(userId, function(err, data) {
+      user = data;
+      next();
+    });
+  })
+  .get(function(req, res) {
+    user.acctype = 'student',
+    user.save(function(err, data, count) {
+      if(err) {
+        // res.status(400).send('Error saving data: ' + err);
+        console.log(err)
+        res.render('users', {error:err})
       } else {
         res.redirect('/subjects/edit/users');
       }

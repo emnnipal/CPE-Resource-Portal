@@ -28,13 +28,13 @@ block content
   br
   br
   .container
-    .container
       ul.animated.fadeInUp
         li
           .row.justify-content-center
                   .col-10
-                    form.waves-effect.waves-light(method= 'post', action= '/portal', onsubmit= 'getSearch()')
+                    form.waves-effect.waves-light(method= 'post', action= '/portal')
                       input#search.form-control(type='search', placeholder='Search')
+                      button#searchbutton Search
                       //- .text-center
                       //-         button.btn.btn-indigo(type="submit") Search  
                     .list-group

@@ -17,9 +17,11 @@ router.get('/', function(req, res) {
     res.render('subjects', {subjects: data,user:req.user});
   })
 });
-router.post('/', function(req, res){
-  res.redirect('/portal')
-});
+
+
+// router.post('/', function(req, res){
+//   res.redirect('/portal')
+// });
 
 router.route('/itemnew/:subjectId')
   .all(function(req, res, next) {

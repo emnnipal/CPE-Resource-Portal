@@ -16,15 +16,12 @@ router.route('/register')
     User.register(new User({username: req.body.username,
                             first_name: req.body.first_name,
                             last_name: req.body.last_name,
-                            email: req.body.email
+                            email: req.body.email,
+                            acctype: 'student'
                             }), req.body.password, function(err, account) {
       if(err) {
         console.log(err)
-        // var eArr = [];
-        // for(var e of Object.keys(err.errors)){ 
-        //     eArr.push(e);
-        // }
-        // return res.render('register', {account: account, error:err.errors[eArr[0]].message});
+
         return res.render('register', {account: account, error:err});
       }
 
@@ -38,32 +35,14 @@ router.get('/log-in', function(req, res, next) {
 
 });
 
-// passport.use(new LocalStrategy(
-//   function(username, password, done) {
-//     User.findOne({ username: username }, function (err, user) {
-//       if (err) { 
-//         console.log(err);
-//         return res.render('login', {error:err}); }
-//       if (!user) {
-//         return done(null, false, { message: 'Incorrect username.' });
-//       }
-//       if (!user.validPassword(password)) {
-//         return done(null, false, { message: 'Incorrect password.' });
-//       }
-//       return done(null, user);
-//     });
-//   }
-// ));
-
 router.get('/login', function(req, res, next) {
   res.render('login', {user: req.user});
-
 });
 
 router.post('/login',
   passport.authenticate('local', { failureRedirect: '/auth/log-in'}),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('/portal');
   });
 
 router.all('/logout', function(req, res, next) {

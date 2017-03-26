@@ -56,5 +56,13 @@ block content
                                   a.red-text(href="/subjects/edit/users/delete/#{user._id}")
                                     button.btn.btn-danger
                                       | Delete
+                                  if (user.acctype !=='admin')
+                                    a(href="/subjects/promote/#{user._id}")
+                                      button.btn.btn-success
+                                        | Promote  
+                                  else
+                                    a.red-text(href="/subjects/demote/#{user._id}")
+                                      button.btn.warning-color
+                                        | Demote
 
   include customfooter
