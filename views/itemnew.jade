@@ -45,6 +45,11 @@ block content
                             .card-block
                               p.white-text.mb-0
                                 | #{error}
+                    if (sent ==='ok')
+                        .card.card-success.text-center.z-depth-2.mb-1
+                            .card-block
+                              p.white-text.mb-0
+                                | Your post has been sent for approval. 
                     else
                       p 
                       | Field with 

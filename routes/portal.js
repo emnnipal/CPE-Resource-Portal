@@ -64,15 +64,15 @@ router.route('/itemnew/:subjectId')
           console.log(err)
           res.render('itemnew', {error:err})
         } else {
-          res.redirect('/portal/'+subjectId);
+          // res.redirect('/portal/'+subjectId);
           // res.json({user:req.user});
-          // res.render('subjects')
+           res.render('itemnew', {user:req.user,subject: subject,error:err,sent: 'ok'})
         }
       })
     }
   })
   .get(function(req, res) {
-    res.render('itemnew', {subject: subject, moment:moment, user:req.user});
+    res.render('itemnew', {subject: subject, moment:moment, user:req.user, sent:''});
   })
 
 
